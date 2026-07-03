@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Escaleras de Madera en Bolivia</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<style>
+:root{
+  --walnut:#2B160B;
+  --oak:#C9965B;
+  --ivory:#F7EEDD;
+  --charcoal:#10100F;
+  --copper:#B66A32;
+  --stone:#8B8175;
+  --forest:#24352A;
+  --cream:#FFF8EA;
+  --text:#21170F;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:Arial,sans-serif;
+  background:var(--ivory);
+  color:var(--text);
+  overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+section{padding:110px 20px}
+.container{width:min(1180px,100%);margin:auto}
+
+.title{
+  font-size:clamp(34px,5vw,64px);
+  line-height:1;
+  letter-spacing:-2px;
+  font-weight:950;
+  margin-bottom:18px;
+}
+.sub{
+  max-width:720px;
+  color:#6B5D50;
+  line-height:1.65;
+  margin-bottom:42px;
+}
+
+/* NAV VIGA SUPERIOR */
+.beam-nav{
+  position:fixed;
+  top:16px;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(1180px,92%);
+  z-index:100;
+  background:
+    repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 8px,transparent 9px 24px),
+    linear-gradient(135deg,var(--walnut),#4A2814);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:10px 10px 26px 26px;
+  padding:14px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 24px 70px rgba(43,22,11,.28);
+}
+
+.beam-brand{
+  color:white;
+  font-weight:950;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.beam-brand i{color:var(--oak)}
+
+.beam-links{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  color:#F5E4CF;
+  font-size:14px;
+}
+
+.beam-links a:hover{color:white}
+
+.beam-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  padding:12px 17px;
+  border-radius:999px;
+  background:linear-gradient(135deg,var(--copper),var(--oak));
+  color:white;
+  font-weight:900;
+}
+
+.beam-toggle{
+  display:none;
+  color:white;
+  font-size:24px;
+}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  padding:145px 20px 90px;
+  background:
+    radial-gradient(circle at 75% 25%,rgba(182,106,50,.24),transparent 28%),
+    linear-gradient(135deg,#FFF8EA 0%,#F1DDC0 58%,#CFA06A 100%);
+  position:relative;
+  overflow:hidden;
+}
+
+.hero:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(115deg,transparent 0 42%,rgba(255,255,255,.48) 43%,transparent 52%),
+    linear-gradient(72deg,transparent 0 70%,rgba(36,53,42,.18) 71%,transparent 78%);
+  animation:lightMove 7s ease-in-out infinite alternate;
+}
+
+@keyframes lightMove{to{transform:translateX(55px)}}
+
+.hero-grid{
+  position:relative;
+  z-index:2;
+  width:min(1180px,100%);
+  min-height:calc(100vh - 230px);
+  margin:auto;
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:46px;
+  align-items:center;
+}
+
+.badge{
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+  padding:10px 15px;
+  border-radius:999px;
+  background:rgba(255,255,255,.76);
+  border:1px solid rgba(43,22,11,.14);
+  color:var(--walnut);
+  font-weight:900;
+  margin-bottom:22px;
+}
+
+.hero h1{
+  font-size:clamp(44px,7vw,92px);
+  line-height:.94;
+  letter-spacing:-3px;
+  color:var(--charcoal);
+  margin-bottom:22px;
+}
+.hero h1 span{color:var(--copper)}
+
+.hero p{
+  max-width:630px;
+  color:#5B4B3D;
+  font-size:clamp(17px,2vw,21px);
+  line-height:1.6;
+  margin-bottom:30px;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  padding:14px 19px;
+  border-radius:999px;
+  font-weight:900;
+}
+
+.btn-main{
+  background:linear-gradient(135deg,var(--charcoal),var(--walnut));
+  color:white;
+  box-shadow:0 15px 35px rgba(16,16,15,.25);
+}
+
+.btn-soft{
+  background:rgba(255,255,255,.78);
+  border:1px solid rgba(43,22,11,.15);
+}
+
+.hero-actions{display:flex;gap:13px;flex-wrap:wrap}
+
+/* ESCALERA CSS */
+.stair-scene{
+  min-height:560px;
+  position:relative;
+  perspective:900px;
+}
+
+.interior-wall{
+  position:absolute;
+  left:8%;
+  right:8%;
+  top:5%;
+  height:250px;
+  border-radius:36px 36px 0 0;
+  background:
+    linear-gradient(135deg,#FFF8EA,#E6CFAC);
+  box-shadow:0 30px 90px rgba(43,22,11,.12);
+}
+
+.window-light{
+  position:absolute;
+  right:12%;
+  top:12%;
+  width:150px;
+  height:220px;
+  background:rgba(255,255,255,.45);
+  filter:blur(8px);
+  border-radius:80px 80px 14px 14px;
+}
+
+.staircase{
+  position:absolute;
+  left:50%;
+  bottom:40px;
+  transform:translateX(-50%) rotateX(58deg) rotateZ(-32deg);
+  width:620px;
+  height:410px;
+  transform-origin:bottom center;
+}
+
+.step{
+  position:absolute;
+  width:270px;
+  height:46px;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.12),transparent),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 5px,transparent 6px 20px),
+    linear-gradient(90deg,var(--oak),#8A4D25);
+  border:1px solid rgba(255,255,255,.22);
+  box-shadow:0 20px 40px rgba(43,22,11,.25);
+  opacity:0;
+  animation:stepIn 4s infinite ease-in-out;
+}
+
+@keyframes stepIn{
+  0%{opacity:0;transform:translateY(70px) translateX(-40px)}
+  30%,100%{opacity:1;transform:translateY(0) translateX(0)}
+}
+
+.step:nth-child(1){left:20px;bottom:0;animation-delay:.1s}
+.step:nth-child(2){left:70px;bottom:45px;animation-delay:.25s}
+.step:nth-child(3){left:120px;bottom:90px;animation-delay:.4s}
+.step:nth-child(4){left:170px;bottom:135px;animation-delay:.55s}
+.step:nth-child(5){left:220px;bottom:180px;animation-delay:.7s}
+.step:nth-child(6){left:270px;bottom:225px;animation-delay:.85s}
+.step:nth-child(7){left:320px;bottom:270px;animation-delay:1s}
+
+.rail-line{
+  position:absolute;
+  left:120px;
+  bottom:305px;
+  width:420px;
+  height:14px;
+  background:var(--walnut);
+  transform:rotate(-18deg);
+  border-radius:999px;
+  box-shadow:0 15px 35px rgba(43,22,11,.25);
+}
+
+.stair-shadow{
+  position:absolute;
+  left:50%;
+  bottom:0;
+  transform:translateX(-50%);
+  width:520px;
+  height:80px;
+  border-radius:50%;
+  background:rgba(43,22,11,.2);
+  filter:blur(24px);
+}
+
+/* FABRICACIÓN */
+.custom{
+  background:white;
+}
+.custom-wrap{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:36px;
+  align-items:stretch;
+}
+.custom-panel{
+  background:
+    repeating-linear-gradient(90deg,rgba(255,255,255,.06) 0 8px,transparent 9px 24px),
+    linear-gradient(135deg,var(--walnut),#5E3218);
+  color:white;
+  border-radius:40px;
+  padding:36px;
+  min-height:410px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.custom-panel strong{
+  font-size:110px;
+  line-height:.8;
+  color:var(--oak);
+}
+.custom-copy{
+  border-top:4px solid var(--copper);
+  padding-top:28px;
+}
+.custom-copy p{
+  color:#6B5D50;
+  line-height:1.8;
+  margin-bottom:18px;
+}
+
+/* TIPOS */
+.types{
+  background:#10100F;
+  color:white;
+}
+.types .sub{color:#D9C6AD}
+
+.stair-types{
+  display:flex;
+  flex-direction:column;
+}
+.type-line{
+  display:grid;
+  grid-template-columns:85px 1fr auto;
+  gap:20px;
+  align-items:center;
+  padding:24px 0;
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+.type-line em{
+  font-style:normal;
+  color:var(--oak);
+  font-weight:950;
+}
+.type-line strong{
+  font-size:clamp(24px,4vw,46px);
+}
+.type-line span{
+  color:#D9C6AD;
+}
+
+/* MATERIALES */
+.materials{
+  background:#EAD6B8;
+}
+.material-wrap{
+  display:grid;
+  grid-template-columns:.95fr 1.05fr;
+  gap:28px;
+}
+.material-visual{
+  min-height:520px;
+  border-radius:40px;
+  background:
+    repeating-linear-gradient(90deg,rgba(43,22,11,.08) 0 16px,transparent 17px 38px),
+    linear-gradient(135deg,#F7EEDD,#B9854D);
+  position:relative;
+  overflow:hidden;
+}
+.material-visual:before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:290px;
+  height:360px;
+  transform:translate(-50%,-50%) skewY(-8deg);
+  border:12px solid rgba(255,255,255,.55);
+  background:rgba(255,255,255,.13);
+}
+.material-list{
+  background:white;
+  border-radius:40px;
+  padding:32px;
+  border:1px solid #D7BE99;
+}
+.material-row{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  padding:17px 0;
+  border-bottom:1px solid #E4D0B0;
+}
+.material-row i{color:var(--copper)}
+
+/* PROCESO */
+.process{
+  background:white;
+}
+.process-steps{
+  max-width:930px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.process-step{
+  display:grid;
+  grid-template-columns:95px 1fr;
+  gap:20px;
+  padding:22px;
+  border-radius:24px;
+  background:#F8EEDF;
+  border:1px solid #E4D0B0;
+}
+.process-step strong{
+  font-size:28px;
+  color:var(--copper);
+}
+
+/* COBERTURA */
+.coverage{
+  background:var(--forest);
+  color:white;
+}
+.coverage .sub{color:#D7E0D5}
+.coverage-case{
+  border-radius:42px;
+  padding:32px;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.1),rgba(255,255,255,.04)),
+    radial-gradient(circle at 80% 20%,rgba(182,106,50,.22),transparent 25%);
+  border:1px solid rgba(255,255,255,.12);
+}
+.zone-search{
+  display:flex;
+  gap:12px;
+  padding:16px;
+  border-radius:18px;
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.14);
+  margin-bottom:26px;
+}
+.zone-search input{
+  flex:1;
+  background:transparent;
+  border:none;
+  outline:none;
+  color:white;
+  font-size:16px;
+}
+.zone-search input::placeholder{color:#D7E0D5}
+.zone-list{
+  columns:3;
+  column-gap:18px;
+}
+.zone{
+  display:block;
+  break-inside:avoid;
+  padding:14px 16px;
+  border-radius:18px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  margin-bottom:12px;
+}
+
+/* BISA */
+.bisa{
+  background:#F8EEDF;
+}
+.bisa-wrap{
+  display:grid;
+  grid-template-columns:.95fr 1.05fr;
+  gap:28px;
+}
+.bisa-copy{
+  background:white;
+  border:1px solid #E4D0B0;
+  border-radius:36px;
+  padding:34px;
+}
+.bisa-module{
+  background:#10100F;
+  color:white;
+  border-radius:36px;
+  padding:30px;
+  position:relative;
+  overflow:hidden;
+}
+.bisa-module:before{
+  content:"";
+  position:absolute;
+  right:-90px;
+  top:-90px;
+  width:270px;
+  height:270px;
+  border-radius:50%;
+  background:rgba(182,106,50,.24);
+}
+.bisa-inner{position:relative;z-index:2}
+.bisa-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-bottom:18px;
+  border-bottom:1px solid rgba(255,255,255,.14);
+}
+.bisa-head h3{font-size:34px}
+.bisa-head i{font-size:34px;color:var(--oak)}
+.bisa-row{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  padding:16px;
+  border-radius:16px;
+  margin-top:12px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.1);
+}
+.bisa-row span{color:#D9C6AD}
+.bisa-row strong{text-align:right}
+
+/* FAQ */
+.faq{
+  background:white;
+}
+.faq-wrap{max-width:900px}
+.faq-item{
+  padding:24px 0;
+  border-bottom:1px solid #E4D0B0;
+  cursor:pointer;
+}
+.faq-q{
+  display:flex;
+  justify-content:space-between;
+  font-size:19px;
+  font-weight:950;
+}
+.faq-a{
+  display:none;
+  padding-top:12px;
+  color:#6B5D50;
+  line-height:1.6;
+}
+
+/* CONTACTO */
+.contact{
+  background:#EAD6B8;
+}
+.contact-wrap{
+  display:grid;
+  grid-template-columns:.85fr 1.15fr;
+  gap:24px;
+}
+.contact-info,.contact-form{
+  background:white;
+  border-radius:36px;
+  padding:32px;
+  border:1px solid #D7BE99;
+}
+.field{
+  width:100%;
+  padding:16px;
+  margin-bottom:12px;
+  border-radius:16px;
+  border:1px solid #D7BE99;
+  background:#FFF9EF;
+  outline:none;
+}
+textarea.field{min-height:120px;resize:none}
+
+/* FOOTER */
+.footer{
+  background:#10100F;
+  color:white;
+  padding:95px 20px 50px;
+}
+.footer-architecture{
+  width:min(1180px,100%);
+  min-height:460px;
+  margin:auto;
+  border-radius:46px;
+  padding:38px;
+  background:
+    radial-gradient(circle at 80% 20%,rgba(182,106,50,.2),transparent 26%),
+    linear-gradient(135deg,rgba(255,255,255,.1),rgba(255,255,255,.035));
+  border:1px solid rgba(255,255,255,.13);
+  position:relative;
+  overflow:hidden;
+}
+.footer-architecture:before{
+  content:"";
+  position:absolute;
+  right:7%;
+  bottom:-20px;
+  width:360px;
+  height:260px;
+  background:
+    repeating-linear-gradient(0deg,rgba(255,255,255,.12) 0 3px,transparent 4px 44px),
+    linear-gradient(135deg,#8A4D25,#C9965B);
+  transform:skewX(-18deg) rotate(-8deg);
+  opacity:.8;
+}
+.footer-content{
+  position:relative;
+  z-index:2;
+  max-width:760px;
+}
+.footer-content h2{
+  font-size:clamp(34px,5vw,64px);
+  line-height:1;
+  letter-spacing:-2px;
+  margin-bottom:18px;
+}
+.footer-content p{
+  color:#D9C6AD;
+  line-height:1.6;
+  margin-bottom:26px;
+}
+.footer-data{
+  position:relative;
+  z-index:2;
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+.footer-pill{
+  padding:17px 20px;
+  min-width:190px;
+  border-radius:22px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+}
+.footer-pill i{color:var(--oak);margin-right:8px}
+
+.float-wa{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#25D366;
+  color:white;
+  font-size:29px;
+  z-index:130;
+  box-shadow:0 15px 40px rgba(37,211,102,.45);
+}
+
+@media(max-width:950px){
+  .beam-links{
+    position:absolute;
+    left:0;
+    right:0;
+    top:74px;
+    display:none;
+    flex-direction:column;
+    background:linear-gradient(135deg,var(--walnut),#4A2814);
+    border-radius:24px;
+    padding:20px;
+  }
+  .beam-links.active{display:flex}
+  .beam-toggle{display:block}
+
+  .hero-grid,
+  .custom-wrap,
+  .material-wrap,
+  .bisa-wrap,
+  .contact-wrap{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{letter-spacing:-2px}
+  .zone-list{columns:1}
+  .stair-scene{min-height:430px}
+  .staircase{width:520px;transform:translateX(-50%) rotateX(58deg) rotateZ(-32deg) scale(.8)}
+}
+</style>
+</head>
+
+<body>
+
+<nav class="beam-nav">
+  <div class="beam-brand">
+    <i class="fa-solid fa-stairs"></i>
+    Escaleras de Madera Bolivia
+  </div>
+
+  <div class="beam-links" id="beamLinks">
+    <a href="#fabricacion">Fabricación</a>
+    <a href="#tipos">Tipos</a>
+    <a href="#materiales">Materiales</a>
+    <a href="#cobertura">Cobertura</a>
+    <a href="#bisa">Banco BISA</a>
+    <a href="#contacto">Contacto</a>
+    <a class="beam-btn" href="https://wa.me/59172640298" target="_blank">
+      <i class="fa-brands fa-whatsapp"></i> WhatsApp
+    </a>
+  </div>
+
+  <div class="beam-toggle" id="beamToggle">
+    <i class="fa-solid fa-bars"></i>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="badge">
+        <i class="fa-solid fa-tree"></i> Carpintería arquitectónica en Bolivia
+      </div>
+
+      <h1>Escaleras de madera <span>a medida</span></h1>
+
+      <p>
+        Fabricación e instalación de escaleras de madera premium para interiores.
+        Huellas, contrapasos, barandas, pasamanos, acabado natural, lacado y ajustes a medida.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-main" href="https://wa.me/59172640298" target="_blank">
+          <i class="fa-brands fa-whatsapp"></i> Cotizar por WhatsApp
+        </a>
+        <a class="btn btn-soft" href="#fabricacion">
+          <i class="fa-solid fa-arrow-down"></i> Ver servicios
+        </a>
+      </div>
+    </div>
+
+    <div class="stair-scene">
+      <div class="interior-wall"></div>
+      <div class="window-light"></div>
+
+      <div class="staircase">
+        <div class="step"></div>
+        <div class="step"></div>
+        <div class="step"></div>
+        <div class="step"></div>
+        <div class="step"></div>
+        <div class="step"></div>
+        <div class="step"></div>
+        <div class="rail-line"></div>
+      </div>
+
+      <div class="stair-shadow"></div>
+    </div>
+  </div>
+</header>
+
+<section class="custom" id="fabricacion">
+  <div class="container custom-wrap">
+    <div class="custom-panel">
+      <span>FABRICACIÓN</span>
+      <strong>01</strong>
+      <small>Diseño · Madera · Instalación</small>
+    </div>
+
+    <div class="custom-copy">
+      <h2 class="title">Fabricación a medida</h2>
+      <p>
+        Fabricamos escaleras de madera según el espacio, medidas, estilo, tipo de estructura,
+        acabado y necesidad de instalación.
+      </p>
+      <p>
+        Puedes enviar fotos del área o medidas aproximadas para coordinar una propuesta
+        adecuada para interiores, viviendas, locales o proyectos personalizados.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="types" id="tipos">
+  <div class="container">
+    <h2 class="title">Tipos de escaleras</h2>
+    <p class="sub">Opciones para espacios interiores, diseños modernos y trabajos personalizados.</p>
+
+    <div class="stair-types">
+      <div class="type-line"><em>01</em><strong>Escaleras rectas</strong><span>Diseño limpio</span></div>
+      <div class="type-line"><em>02</em><strong>Escaleras en L</strong><span>Optimización</span></div>
+      <div class="type-line"><em>03</em><strong>Escaleras en U</strong><span>Interior</span></div>
+      <div class="type-line"><em>04</em><strong>Escaleras flotantes</strong><span>Moderno</span></div>
+      <div class="type-line"><em>05</em><strong>Con baranda</strong><span>Seguridad</span></div>
+      <div class="type-line"><em>06</em><strong>Con pasamanos</strong><span>Acabado</span></div>
+      <div class="type-line"><em>07</em><strong>Interiores</strong><span>Vivienda</span></div>
+      <div class="type-line"><em>08</em><strong>Personalizadas</strong><span>A medida</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="materials" id="materiales">
+  <div class="container material-wrap">
+    <div class="material-visual"></div>
+
+    <div class="material-list">
+      <h2 class="title">Materiales, acabados e instalación</h2>
+      <p class="sub">Detalles que definen resistencia, presentación y durabilidad visual.</p>
+
+      <div class="material-row"><span>Madera maciza</span><i class="fa-solid fa-check"></i></div>
+      <div class="material-row"><span>Huellas</span><i class="fa-solid fa-check"></i></div>
+      <div class="material-row"><span>Contrapasos</span><i class="fa-solid fa-check"></i></div>
+      <div class="material-row"><span>Barandas</span><i class="fa-solid fa-check"></i></div>
+      <div class="material-row"><span>Pasamanos</span><i class="fa-solid fa-check"></i></div>
+      <div class="material-row"><span>Acabado natural</span><i class="fa-solid fa-check"></i></div>
+      <div class="material-row"><span>Lacado y sellado</span><i class="fa-solid fa-check"></i></div>
+      <div class="material-row"><span>Instalación y ajustes a medida</span><i class="fa-solid fa-check"></i></div>
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="container">
+    <h2 class="title">Proceso de fabricación e instalación</h2>
+    <p class="sub">Coordinación clara desde la consulta hasta la instalación final.</p>
+
+    <div class="process-steps">
+      <div class="process-step"><strong>01</strong><p>Contactar por WhatsApp.</p></div>
+      <div class="process-step"><strong>02</strong><p>Enviar medidas o foto del espacio.</p></div>
+      <div class="process-step"><strong>03</strong><p>Indicar tipo de escalera.</p></div>
+      <div class="process-step"><strong>04</strong><p>Definir madera y acabado.</p></div>
+      <div class="process-step"><strong>05</strong><p>Coordinar fabricación.</p></div>
+      <div class="process-step"><strong>06</strong><p>Coordinar instalación.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="coverage" id="cobertura">
+  <div class="container">
+    <h2 class="title">Cobertura en Bolivia</h2>
+    <p class="sub">Atención bajo coordinación por ciudad o zona.</p>
+
+    <div class="coverage-case">
+      <div class="zone-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input id="zoneSearch" placeholder="Buscar ciudad o zona...">
+      </div>
+
+      <div class="zone-list">
+        <span class="zone">Bolivia</span>
+        <span class="zone">Santa Cruz</span>
+        <span class="zone">La Paz</span>
+        <span class="zone">Cochabamba</span>
+        <span class="zone">Sucre</span>
+        <span class="zone">Tarija</span>
+        <span class="zone">Oruro</span>
+        <span class="zone">Potosí</span>
+        <span class="zone">Beni</span>
+        <span class="zone">Pando</span>
+        <span class="zone">Más zonas bajo coordinación</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bisa" id="bisa">
+  <div class="container bisa-wrap">
+    <div class="bisa-copy">
+      <h2 class="title">Pagos y coordinación por Banco BISA</h2>
+      <p class="sub">
+        Consulta por WhatsApp las opciones de pago y coordinación para fabricación e instalación de escaleras de madera en Bolivia.
+      </p>
+      <p style="color:#6B5D50;line-height:1.7">
+        Puedes coordinar ciudad o zona, tipo de escalera, medidas aproximadas, acabado y consulta de pago por Banco BISA.
+      </p>
+    </div>
+
+    <div class="bisa-module">
+      <div class="bisa-inner">
+        <div class="bisa-head">
+          <h3>Banco BISA</h3>
+          <i class="fa-solid fa-building-columns"></i>
+        </div>
+
+        <div class="bisa-row"><span>Consulta</span><strong>Pagos</strong></div>
+        <div class="bisa-row"><span>Coordinación</span><strong>WhatsApp</strong></div>
+        <div class="bisa-row"><span>Servicio</span><strong>Escaleras de madera</strong></div>
+        <div class="bisa-row"><span>Ubicación</span><strong>Bolivia</strong></div>
+
+        <br>
+        <a class="btn btn-main" href="https://wa.me/59172640298?text=Hola,%20quiero%20consultar%20pagos%20por%20Banco%20BISA%20para%20fabricaci%C3%B3n%20o%20instalaci%C3%B3n%20de%20escaleras%20de%20madera" target="_blank">
+          <i class="fa-brands fa-whatsapp"></i> Consultar Banco BISA
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="container">
+    <h2 class="title">Preguntas frecuentes</h2>
+
+    <div class="faq-wrap">
+      <div class="faq-item"><div class="faq-q">¿Fabrican escaleras a medida?<i class="fa-solid fa-plus"></i></div><div class="faq-a">Sí, se coordina según medidas, espacio, tipo de escalera y acabado.</div></div>
+      <div class="faq-item"><div class="faq-q">¿Trabajan madera maciza?<i class="fa-solid fa-plus"></i></div><div class="faq-a">Puedes consultar opciones de madera, huellas, contrapasos y acabados por WhatsApp.</div></div>
+      <div class="faq-item"><div class="faq-q">¿Hacen lacado y sellado?<i class="fa-solid fa-plus"></i></div><div class="faq-a">Sí, se pueden coordinar acabados naturales, sellado o lacado.</div></div>
+      <div class="faq-item"><div class="faq-q">¿Instalan barandas y pasamanos?<i class="fa-solid fa-plus"></i></div><div class="faq-a">Sí, se puede consultar barandas, pasamanos y ajustes a medida.</div></div>
+      <div class="faq-item"><div class="faq-q">¿Atienden en Bolivia?<i class="fa-solid fa-plus"></i></div><div class="faq-a">Sí, la atención se coordina por ciudad o zona.</div></div>
+      <div class="faq-item"><div class="faq-q">¿Puedo consultar pagos por Banco BISA?<i class="fa-solid fa-plus"></i></div><div class="faq-a">Sí, puedes consultar pagos por Banco BISA directamente por WhatsApp.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+  <div class="container contact-wrap">
+    <div class="contact-info">
+      <h2 class="title">Solicita tu escalera</h2>
+      <p class="sub">Envía ciudad, tipo de escalera, medidas aproximadas y detalles del espacio.</p>
+      <p><i class="fa-brands fa-whatsapp"></i> +591 72640298</p><br>
+      <p><i class="fa-solid fa-location-dot"></i> Bolivia</p><br>
+      <p><i class="fa-solid fa-building-columns"></i> Banco BISA</p>
+    </div>
+
+    <form class="contact-form" id="contactForm">
+      <input class="field" id="name" placeholder="Nombre" required>
+      <input class="field" id="phone" placeholder="Teléfono" required>
+      <input class="field" id="city" placeholder="Ciudad o zona" required>
+
+      <select class="field" id="stairType" required>
+        <option value="">Tipo de escalera</option>
+        <option>Escalera recta</option>
+        <option>Escalera en L</option>
+        <option>Escalera en U</option>
+        <option>Escalera flotante</option>
+        <option>Escalera con baranda</option>
+        <option>Escalera con pasamanos</option>
+        <option>Escalera interior</option>
+        <option>Escalera personalizada</option>
+      </select>
+
+      <input class="field" id="measures" placeholder="Medidas aproximadas">
+      <textarea class="field" id="message" placeholder="Mensaje"></textarea>
+
+      <button class="btn btn-main" type="submit">
+        <i class="fa-brands fa-whatsapp"></i> Enviar por WhatsApp
+      </button>
+    </form>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-architecture">
+    <div class="footer-content">
+      <h2>Cierre arquitectónico en madera</h2>
+      <p>
+        Fabricación e instalación de escaleras de madera en Bolivia.
+        Huellas, contrapasos, barandas, pasamanos, acabado natural, lacado, sellado y coordinación por WhatsApp.
+      </p>
+    </div>
+
+    <div class="footer-data">
+      <div class="footer-pill"><i class="fa-solid fa-location-dot"></i> Bolivia</div>
+      <div class="footer-pill"><i class="fa-solid fa-stairs"></i> Escaleras de madera</div>
+      <div class="footer-pill"><i class="fa-solid fa-tree"></i> Acabados premium</div>
+      <div class="footer-pill"><i class="fa-solid fa-building-columns"></i> Banco BISA</div>
+    </div>
+  </div>
+</footer>
+
+<a class="float-wa" href="https://wa.me/59172640298" target="_blank">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<script>
+const beamToggle = document.getElementById("beamToggle");
+const beamLinks = document.getElementById("beamLinks");
+
+beamToggle.addEventListener("click",()=>{
+  beamLinks.classList.toggle("active");
+});
+
+document.querySelectorAll(".beam-links a").forEach(a=>{
+  a.addEventListener("click",()=>beamLinks.classList.remove("active"));
+});
+
+document.getElementById("zoneSearch").addEventListener("input",function(){
+  const value = this.value.toLowerCase();
+  document.querySelectorAll(".zone").forEach(zone=>{
+    zone.style.display = zone.textContent.toLowerCase().includes(value) ? "block" : "none";
+  });
+});
+
+document.querySelectorAll(".faq-item").forEach(item=>{
+  item.addEventListener("click",()=>{
+    const answer = item.querySelector(".faq-a");
+    answer.style.display = answer.style.display === "block" ? "none" : "block";
+  });
+});
+
+document.getElementById("contactForm").addEventListener("submit",function(e){
+  e.preventDefault();
+
+  const text =
+  `Hola, quiero consultar fabricación o instalación de escaleras de madera.%0A%0A` +
+  `Nombre: ${encodeURIComponent(document.getElementById("name").value)}%0A` +
+  `Teléfono: ${encodeURIComponent(document.getElementById("phone").value)}%0A` +
+  `Ciudad/Zona: ${encodeURIComponent(document.getElementById("city").value)}%0A` +
+  `Tipo de escalera: ${encodeURIComponent(document.getElementById("stairType").value)}%0A` +
+  `Medidas aproximadas: ${encodeURIComponent(document.getElementById("measures").value)}%0A` +
+  `Mensaje: ${encodeURIComponent(document.getElementById("message").value)}`;
+
+  window.open(`https://wa.me/59172640298?text=${text}`,"_blank");
+});
+
+gsap.from(".badge",{y:20,opacity:0,duration:.7});
+gsap.from(".hero h1",{y:35,opacity:0,duration:.9,delay:.15});
+gsap.from(".hero p",{y:25,opacity:0,duration:.8,delay:.3});
+gsap.from(".stair-scene",{scale:.92,opacity:0,duration:1,delay:.35,ease:"power2.out"});
+gsap.from(".hero-actions",{y:20,opacity:0,duration:.8,delay:.55});
+
+const reveal = document.querySelectorAll(
+  ".custom-panel,.custom-copy,.type-line,.material-visual,.material-list,.process-step,.coverage-case,.bisa-copy,.bisa-module,.faq-item,.contact-info,.contact-form,.footer-architecture"
+);
+
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      gsap.to(entry.target,{y:0,opacity:1,duration:.7,ease:"power2.out"});
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:.14});
+
+reveal.forEach(el=>{
+  gsap.set(el,{y:35,opacity:0});
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>
